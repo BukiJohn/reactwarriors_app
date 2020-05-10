@@ -23,6 +23,7 @@ removeMovie = movie => {
       movies: updateMovies
     });
   }
+
 addMovieToWillWatch = movie => {
   console.log(movie);
   const updateMoviesWillWatch = [...this.state.moviesWillWatch, movie];
