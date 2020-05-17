@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 class MovieItem extends React.Component {
     constructor() {
@@ -22,6 +22,7 @@ class MovieItem extends React.Component {
             <div className = "d-flex justify-content-between align-items-center">
                 <p className = "mb-0">Rating: {movie.vote_average}</p>
                 {this.state.willWatch === true ? (
+                     // Кнопка "Удалить  с избранного"
                     <button
                         type = "button"
                         className = "btn btn-success"
@@ -34,7 +35,9 @@ class MovieItem extends React.Component {
                         Remove Will Watch
                     </button>
                 ) : (
+
                 <button
+                    // Кнопка "Добавить в избранное"
                     type = "button"
                     className = "btn btn-secondary"
                     onClick = {() => {
@@ -50,6 +53,7 @@ class MovieItem extends React.Component {
                 }
             </div>
             <button
+             // Кнопка "Удалить фильм"
                 onClick = {removeMovie.bind(this, movie)}>
                     Delete movie
             </button>
