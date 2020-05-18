@@ -16,8 +16,8 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount () {
-     this.getMovies();
+  componentDidMount() {
+    this.getMovies();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -27,18 +27,22 @@ class App extends React.Component {
   }
 
   getMovies = () => {
-    fetch (`https://api.themoviedb.org/3/discover/movie?api_key=3f4ca4f3a9750da53450646ced312397&sort_by=${this.state.sort_by}`).then((response) => {
-      console.log ("then")
-      return response.json()
-    }).then((data) => {
-      console.log("data", data)
-      this.setState({
-        movies: data.results,
+    fetch(
+      `https://api.themoviedb.org/3/discover/movie?api_key=3f4ca4f3a9750da53450646ced312397&sort_by=${this.state.sort_by}`
+    )
+      .then((response) => {
+        console.log("then");
+        return response.json();
       })
-    })
-  }
+      .then((data) => {
+        console.log("data", data);
+        this.setState({
+          movies: data.results,
+        });
+      });
+  };
 
-   // функция "Удалить фильм"
+  // функция "Удалить фильм"
   removeMovie = (movie) => {
     const updateMovies = this.state.movies.filter(function (item) {
       return item.id !== movie.id;
@@ -56,7 +60,7 @@ class App extends React.Component {
       moviesWillWatch: updateMoviesWillWatch,
     });
   };
-   // функция "Удалить из избранного"
+  // функция "Удалить из избранного"
   removeMovieFromWillWatch = (movie) => {
     const updateMoviesWillWatch = this.state.moviesWillWatch.filter(function (
       item
@@ -68,11 +72,11 @@ class App extends React.Component {
     });
   };
 
-  updateSortBy = value => {
+  updateSortBy = (value) => {
     this.setState({
       sort_by: value,
     });
-  }
+  };
 
   render() {
     console.log(this);
@@ -81,9 +85,9 @@ class App extends React.Component {
         <div className="row">
           <div className="col-9">
             <div className="row">
-            <MovieTabs
-              sort_by={this.state.sort_by}
-              updateSortBy={this.updateSortBy}
+              <MovieTabs
+                sort_by={this.state.sort_by}
+                updateSortBy={this.updateSortBy}
               />
               {this.state.movies.map((movie) => {
                 return (
@@ -98,9 +102,9 @@ class App extends React.Component {
                 );
               })}
             </div>
-          </div>
-          <div className="col-3">
-            <p>Will Watch: {this.state.moviesWillWatch.length}</p>
+            <div className="col-3">
+              <p>Will Watch: {this.state.moviesWillWatch.length}</p>
+            </div>
           </div>
         </div>
       </div>
